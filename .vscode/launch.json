@@ -9,7 +9,7 @@
       "stopAtEntry": false,
       "externalConsole": true,
       "cwd": "c:/Users/Admin/Documents/Task Priority System",
-      "program": "c:/Users/Admin/Documents/Task Priority System/taskpriosystem.exe",
+      "program": "c:/Users/Admin/Documents/Task Priority System/priotasksystem.exe",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
