@@ -135,7 +135,7 @@ void editTask() {
     heapifyUp(index);
     heapifyDown(index);
 
-    printf("Task updated!\n");
+    printf("\nTask updated!\n");
 }
 
 // 5. Delete Task
@@ -195,7 +195,7 @@ void displaySortedTasks() {
         temp[0] = temp[tempCount - 1];
         tempCount--;
 
-        // heapify temp
+        // heapify temp (idk how to operate ts, lowkey just copy the heapify down code here DON'T TOUCH)
         int i = 0;
         while (1) {
             int left = 2 * i + 1;
@@ -229,7 +229,10 @@ void saveTasks() {
     sprintf(filename, "data/%s_tasks.txt", currentUser);
 
     FILE *fp = fopen(filename, "w");
-    if (!fp) return;
+        if (!fp) {
+        printf("Error saving file!\n");
+    return;
+    }
 
     for (int i = 0; i < taskCount; i++) {
         fprintf(fp, "%s %d\n", tasks[i].name, tasks[i].priority);
@@ -240,6 +243,9 @@ void saveTasks() {
 
 // Loading process for Choice: 2
 void loadTasks() {
+    printf("Loading tasks...\n");
+    taskCount = 0;
+
     char filename[100];
     sprintf(filename, "data/%s_tasks.txt", currentUser);
 
@@ -248,9 +254,13 @@ void loadTasks() {
 
     char name[50];
     int priority;
+    char line[100];
 
-    while (fscanf(fp, " %[^\n] %d", name, &priority) == 2) {
+    while (fgets(line, sizeof(line), fp)) {
+    if (sscanf(line, "%49[^0-9\n] %d", name, &priority) == 2) {
+        name[strcspn(name, "\n")] = '\0';
         addTask(name, priority);
+        }
     }
 
     fclose(fp);
@@ -266,10 +276,18 @@ void registerUser() {
 
     char username[50], password[50];
 
+    printf("\n=== Register ===\n");
+    printf("\nNo spaces allowed in username or password.\n");
     printf("\nUsername: ");
     fgets(username, sizeof(username), stdin);
     username[strcspn(username, "\n")] = '\0';
 
+    if (strchr(username, ' ') != NULL) {
+        printf("\nUsername cannot contain spaces!\n");
+        return;
+    }
+
+    printf("\n=== Note: Passwords are stored in plain text for simplicity. Don't use real passwords! ===\n");
     printf("\nPassword: ");
     fgets(password, sizeof(password), stdin);
     password[strcspn(password, "\n")] = '\0';
@@ -288,6 +306,7 @@ int loginUser() {
     char username[50], password[50];
     char fileUser[50], filePass[50];
 
+    printf("\n=== Login ===\n");
     printf("\nUsername: ");
     fgets(username, sizeof(username), stdin);
     username[strcspn(username, "\n")] = '\0';
@@ -332,16 +351,19 @@ int main() {
         fgets(buffer, sizeof(buffer), stdin);
 
         if (sscanf(buffer, "%d", &choice) != 1) {
-            printf("Invalid input! Enter 1 or 2.\n");
+            printf("\nInvalid input! Enter 1 or 2.\n");
             continue;
         }
 
         if (choice == 1) registerUser();
         else if (choice == 2) loggedIn = loginUser();
-        else printf("Invalid choice!\n");
+        else printf("\nInvalid choice!\n");
+    
     }
 
+    printf("\nUser logged in: %s\n", currentUser);
     loadTasks();
+    printf("\nTasks loaded: %d\n", taskCount);
 
     // MAIN MENU
     while (1) {
