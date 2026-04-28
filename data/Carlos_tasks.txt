@@ -1,3 +1,5 @@
-Play scrim matches 6
-Clean room   1
-Do the dishes  2
+Clean house 7
+Play scrim matches  6
+Do the dishes   2
+Clean room    1
+Cook 6
