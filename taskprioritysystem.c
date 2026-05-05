@@ -7,7 +7,7 @@
 typedef struct {
     char name[50];
     int priority;
-} Task;
+} Task; 
 
 Task tasks[MAX_TASKS];
 int taskCount = 0;
