@@ -680,7 +680,7 @@ int main() {
         printf("\n3. Process Tasks");
         printf("\n4. Edit Task");
         printf("\n5. Delete Task");
-        printf("\n6. View Archive");
+        printf("\n6. View Archives");
         printf("\n7. Save & Exit\n");
         printf("\nNOTE: Make sure to save before exiting, or your changes will be lost!\n");
         printf("\nChoice (1-7): ");
