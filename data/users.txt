@@ -1,11 +1,1 @@
-Carlos 123123
-Miguel 111
-Sandy 123123
-Kim iloveyou
-Cloie 992
-Derrick deeznuts
-Christoff nuts
-Chavez 0001
-Luis lalala
-Althea coding
- 
+Carlos|123123
